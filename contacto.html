@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impresoras Fiscales - INVERSIONES ANCA, C.A</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <img src="logo inversiones anca.png" alt="Inversiones Anca C.A. Logo" class="logo-img">
+            </a>
+            <h1>INVERSIONES ANCA, C.A</h1>
+            <p>Cumplimiento y Eficiencia para tu Negocio</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="nav-button-cta">Inicio</a></li>
+                <li><a href="impresoras-fiscales.html" class="nav-button-cta">Impresoras Fiscales</a></li>
+                <li><a href="sistema-facturacion.html" class="nav-button-cta">Sistemas de Facturación</a></li>
+                <li><a href="#">Soporte Técnico</a></li>
+                <li><a href="contacto.html" class="nav-button-cta">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <main>
+        <div class="container">
+            <h2>Formulario de Contacto y Cotización</h2>
+
+            <form action="/enviar-cotizacion" method="POST" class="contact-form">
+                
+                <p>Por favor, especifica el producto o servicio en el que estás interesado.</p>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre_completo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email_contacto" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono (WhatsApp):</label>
+                    <input type="tel" id="telefono" name="telefono_contacto" placeholder="Ej: 0414-XXXXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="producto">Producto/Servicio de Interés:</label>
+                    <select id="producto" name="producto_interes" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="HKA80W">Impresora Fiscal HKA80W</option>
+                        <option value="SistemaFacturacion">Sistema de Facturación (Software)</option>
+                        <option value="ComboEmprendedor">Combo Emprendedor Fiscal</option>
+                        <option value="SoporteTecnico">Soporte Técnico/Mantenimiento</option>
+                        <option value="Otro">Otro (Especificar en mensaje)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Detalles Adicionales:</label>
+                    <textarea id="mensaje" name="mensaje_adicional" rows="5" placeholder="Escribe cualquier pregunta o detalle adicional sobre tu negocio."></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Enviar Solicitud de Cotización</button>
+
+            </form>
+        </div>
+    </main>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impresoras Fiscales - INVERSIONES ANCA, C.A</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 INVERSIONES ANCA, C.A. Todos los derechos reservados.</p>
+            <p>RIF: J-50045159-8 | Caracas, Venezuela</p>
+        </div>
+    </footer>
+
+ <a href="https://wa.me/+584141049735?text=Hola,%20estoy%20interesado%20en%20sus%20soluciones%20fiscales." 
+       target="_blank" 
+       class="whatsapp-button">
+        <img src="whatsapp00.png" alt="WhatsApp Icono">
+    </a>
+    </body>
+</html>
