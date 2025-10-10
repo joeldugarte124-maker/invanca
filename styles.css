@@ -21,6 +21,66 @@ header {
     text-align: center;
     padding: 20px 0;
 }
+/* ==================================== */
+/* RESPONSIVIDAD DEL ENCABEZADO (HEADER) */
+/* ==================================== */
+
+@media (max-width: 600px) {
+    /* 1. Reducir el tamaño de fuente del encabezado en móviles */
+    header {
+        padding: 15px 0; /* Reduce el padding vertical */
+    }
+
+    header h1 {
+        font-size: 2em; /* Título principal más pequeño */
+        padding-left: 0; /* Asegura que el título no tenga el margen extra del logo */
+    }
+
+    header p {
+        font-size: 1.3em; /* Subtítulo más pequeño */
+    }
+    
+    /* 2. Ajustar el contenedor para hacer espacio para el logo en la izquierda */
+    header .container {
+        padding: 0 15px; /* Pequeño padding lateral */
+        display: flex;
+        flex-direction: column; /* Apila el logo y el texto */
+        align-items: center; /* Centra el contenido */
+    }
+
+    /* 3. Reajustar el logo */
+    .logo-link {
+        position: static; /* Quita el posicionamiento absoluto */
+        transform: none; /* Elimina la transformación de centrado */
+        margin-bottom: 10px; /* Espacio debajo del logo */
+        padding-left: 0;
+    }
+    
+    .logo-img {
+        width: 100px; /* Reduce el tamaño del logo */
+        height: auto;
+    }
+}
+
+/* ==================================== */
+/* RESPONSIVIDAD DE LA NAVEGACIÓN (NAV) */
+/* ==================================== */
+/* Aunque la navegación ya es responsiva, este ajuste asegura el espaciado */
+@media (max-width: 600px) {
+    nav ul {
+        flex-wrap: wrap; /* Permite que los elementos pasen a una nueva línea si no caben */
+    }
+    
+    nav ul li {
+        margin: 5px 8px; /* Reduce el margen entre elementos */
+    }
+
+    nav ul li a {
+        padding: 10px 15px; /* Reduce el padding de los enlaces */
+        font-size: 1em; /* Ajusta el tamaño de la fuente */
+    }
+}
+
 
 header h1 {
     margin: 0;
@@ -808,3 +868,4 @@ header h1 {
         }
     }
 }
+
