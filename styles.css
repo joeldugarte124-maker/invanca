@@ -2,7 +2,11 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    
+    /* ⚠️ IMPORTANTE: Añade padding-top para compensar la altura de la NAV fija. */
+    /* 45px es un valor seguro para tu diseño de NAV */
+    padding-top: 45px; 
+    
     background-color: #f4f4f4;
     color: #333;
 }
@@ -16,7 +20,7 @@ body {
 
 /* Encabezado */
 header {
-    background-color: #2c3e50;
+    background-color: #b4d1ee;
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -25,7 +29,6 @@ header {
 header h1 {
     margin: 0;
     font-size: 3.5em;
-    padding-left: 0; /* Limpieza de estilo antiguo del logo */
 }
 
 header p {
@@ -33,14 +36,21 @@ header p {
     font-size: 2.2em;
 }
 
-/* Navegación (COMPACTA y FIJA) */
+/* Navegación */
 nav {
-    background-color: #34495e; 
+    /* 2. FIJACIÓN: Aplica estas propiedades para que la barra se quede pegada */
     position: sticky; 
-    top: 0; 
-    z-index: 100; /* Asegura que se vea por encima del contenido */
-    width: 100%; 
-    padding: 1px 0; /* Mínimo padding vertical para reducir la altura */
+    top: 0;          /* Pégala al borde superior */
+    left: 0;
+    width: 100%;     /* Ocupa todo el ancho */
+    z-index: 1000;   /* Por encima de otros elementos */
+    
+    background-color: #33363a;
+    /* 3. COMPACTACIÓN: Reducimos el padding vertical a 0, 
+       ya que la altura la controlarán los enlaces <a> */
+    
+    padding: 0;
+
 }
 
 nav ul {
@@ -48,56 +58,30 @@ nav ul {
     padding: 0;
     margin: 0;
     text-align: center;
-    display: flex; 
-    justify-content: center;
-    flex-wrap: wrap; /* Permite que el menú se envuelva en 2 líneas */
 }
 
 nav ul li {
     display: inline-block;
-    margin: 1px 4px; /* Margen entre elementos muy pequeño */
+    margin: 0 17px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 0.95em; /* Fuente ligeramente más pequeña */
-    display: block;
-    padding: 4px 8px; /* Padding interno de los botones casi nulo */
-    transition: background-color 0.3s;
+    font-size: 1.1em;
+    
+    /* 4. COMPACTACIÓN: Reduce el padding vertical de los enlaces.
+       Esto hará que la barra sea más corta. (8px en lugar de 15px) */
+    padding: 8px 20px; 
+    display: block; /* Asegura que el padding funcione en toda la zona del enlace */
+
 }
-
-nav ul li a:hover {
-    background-color: #555;
-}
-
-/* --- ESTILOS ESPECÍFICOS DEL LOGO EN LA NAVEGACIÓN --- */
-
-nav ul li.nav-logo-item {
-    margin: 1px 10px 1px 0; /* Margen a la derecha para separarlo de "Inicio" */
-    padding: 0;
-    display: flex;
-    align-items: center; 
-}
-
-.logo-nav-img {
-    height: 30px; /* Tamaño pequeño para la barra fija */
-    width: auto;
-    vertical-align: middle; 
-}
-
-/* Eliminar el fondo hover del logo */
-.nav-logo-item a:hover {
-    background-color: transparent;
-}
-
-
 /* Contenido Principal */
 main h2 {
     text-align: center;
     margin-bottom: 40px;
     font-size: 2em;
-    color: #34495e;
+    color: #cadef1;
 }
 
 .product-grid {
@@ -162,7 +146,7 @@ main h2 {
 
 /* Pie de Página */
 footer {
-    background-color: #2c3e50;
+    background-color: #eeeff0;
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -170,12 +154,12 @@ footer {
 }
 
 /* ==================================== */
-/* ESTILOS DEL CARRUSEL (SLIDER) - Responsivo */
+/* ESTILOS DEL CARRUSEL (SLIDER) - 5 IMÁGENES VISIBLES (11 ÍTEMS) */
 /* ==================================== */
 
 .carousel-container {
-    width: 90%;
-    max-width: 1200px; 
+    width: 900%;
+    max-width: 1200px; /* Usamos el máximo del contenedor para que quepan 5 imágenes */
     overflow: hidden; 
     margin: 0 auto 20px auto; 
     border-radius: 8px;
@@ -184,17 +168,21 @@ footer {
 
 .carousel-slide {
     display: flex;
-    width: 220%; /* Para mostrar 5 de 11 ítems */
+    /* Hay 11 ítems, queremos ver 5 a la vez. 11 / 5 * 100% = 220% */
+    width: 220%; 
+    
+    /* Duración de 30s para un ciclo completo (8 movimientos) */
     animation: slide-animation 20s infinite; 
 }
 
 .carousel-item {
+    /* Cada ítem es 1/11 del ancho total. Esto equivale a 1/5 del ancho visible. */
     width: calc(100% / 11); 
     flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 1px; 
+    padding: 0 1px; /* Pequeño padding para separar las imágenes */
 }
 
 .carousel-item img {
@@ -202,20 +190,92 @@ footer {
     display: block;
     height: auto;
     object-fit: contain; 
-    max-height: 250px; 
+    max-height: 250px; /* Reducimos la altura para que las 5 imágenes encajen bien */
 }
 
 
+/* La animación se ajusta para mover el carrusel en pasos de 1/11 (9.0909%) */
 @keyframes slide-animation {
-    0%, 10% { transform: translateX(0); }
-    12%, 22% { transform: translateX(calc(-100% / 11 * 1)); }
-    24%, 34% { transform: translateX(calc(-100% / 11 * 2)); }
-    36%, 46% { transform: translateX(calc(-100% / 11 * 3)); }
-    48%, 58% { transform: translateX(calc(-100% / 11 * 4)); }
-    60%, 70% { transform: translateX(calc(-100% / 11 * 5)); }
-    72%, 82% { transform: translateX(calc(-100% / 11 * 6)); }
-    84%, 94% { transform: translateX(calc(-100% / 11 * 7)); }
-    100% { transform: translateX(calc(-100% / 11 * 7)); }
+    /* El movimiento es de 1/11 (9.0909%) del ancho total del slide. Hay 8 movimientos únicos. */
+    
+    /* 1. Muestra: 1, 2, 3, 4, 5 */
+    0%, 10% {
+        transform: translateX(0); 
+    }
+    
+    /* 2. Muestra: 2, 3, 4, 5, 6 */
+    12%, 22% {
+        transform: translateX(calc(-100% / 11 * 1)); /* Mueve 1/11 */
+    }
+    
+    /* 3. Muestra: 3, 4, 5, 6, 7 */
+    24%, 34% {
+        transform: translateX(calc(-100% / 11 * 2)); /* Mueve 2/11 */
+    }
+    
+    /* 4. Muestra: 4, 5, 6, 7, 8 */
+    36%, 46% {
+        transform: translateX(calc(-100% / 11 * 3)); /* Mueve 3/11 */
+    }
+
+    /* 5. Muestra: 5, 6, 7, 8, (Copia 1) */
+    48%, 58% {
+        transform: translateX(calc(-100% / 11 * 4)); /* Mueve 4/11 */
+    }
+
+    /* 6. Muestra: 6, 7, 8, (Copia 1), (Copia 2) */
+    60%, 70% {
+        transform: translateX(calc(-100% / 11 * 5)); /* Mueve 5/11 */
+    }
+
+    /* 7. Muestra: 7, 8, (Copia 1), (Copia 2), (Copia 3) */
+    72%, 82% {
+        transform: translateX(calc(-100% / 11 * 6)); /* Mueve 6/11 */
+    }
+    
+    /* 8. Muestra: 8, (Copia 1), (Copia 2), (Copia 3) - Este es el final del contenido único */
+    84%, 94% {
+        transform: translateX(calc(-100% / 11 * 7)); /* Mueve 7/11 */
+    }
+    
+    /* Salto al final para reiniciar (imperceptible) */
+    100% {
+        transform: translateX(calc(-100% / 11 * 7)); 
+    }
+}
+/* =============LOGO=IZQUIERDO=ANCA================= */
+/* ESTILOS DEL LOGO EN LA CABECERA */
+/* ==================================== */
+
+/* 1. Ajustar el contenedor para que el logo se posicione correctamente */
+header .container {
+    position: relative; /* Permite posicionar el logo de forma absoluta dentro */
+    /* IMPORTANTE: Si ya tenías esta propiedad, ignórala */
+}
+
+/* 2. Estilos del enlace del logo */
+.logo-link {
+    /* Posiciona el logo en la esquina superior izquierda */
+    position: absolute;
+    top: 50%; /* Centra verticalmente el logo */
+    left: 0;
+    transform: translateY(-50%); /* Ajuste fino de centrado vertical */
+    z-index: 10;
+    display: block;
+    padding-left: 15px; /* Pequeño espacio del borde */
+}
+
+/* 3. Estilos de la imagen del logo */
+.logo-img {
+    width: 150px; /* Tamaño pequeño deseado */
+    height: auto;
+}
+
+/* 4. Ajuste del título H1 para que no quede detrás del logo */
+header h1 {
+    /* Agrega un margen/padding para compensar el espacio del logo */
+    /* (150px del logo + 20px de espacio extra) */
+    padding-left: 1px; 
 }
 /* ==================================== */
 /* ESTILOS DE LA PÁGINA DE IMPRESORAS (printer-list) */
@@ -223,8 +283,8 @@ footer {
 
 .printer-list {
     display: flex;
-    flex-direction: column; 
-    gap: 40px; 
+    flex-direction: column; /* Apila los productos verticalmente */
+    gap: 40px; /* Espacio entre cada tarjeta de impresora */
     margin-top: 30px;
 }
 
@@ -234,12 +294,12 @@ footer {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    display: flex; 
-    align-items: center; 
+    display: flex; /* Para poner la imagen y la info lado a lado */
+    align-items: center; /* Centra verticalmente */
 }
 
 .printer-image {
-    flex-shrink: 0; 
+    flex-shrink: 0; /* Evita que la imagen se comprima */
     width: 300px;
     margin-right: 30px;
     text-align: center;
@@ -252,14 +312,14 @@ footer {
 }
 
 .printer-info {
-    flex-grow: 1; 
+    flex-grow: 1; /* Ocupa el espacio restante */
 }
 
 .printer-info h3 {
     font-size: 1.8em;
     color: #2c3e50;
     margin-top: 0;
-    border-bottom: 2px solid #e67e22; 
+    border-bottom: 2px solid #e67e22; /* Línea naranja debajo del título */
     padding-bottom: 5px;
     margin-bottom: 15px;
 }
@@ -276,10 +336,10 @@ footer {
 }
 
 .features li::before {
-    content: "✔️"; 
+    content: "✔️"; /* Ícono de checkmark */
     position: absolute;
     left: 0;
-    color: #e67e22; 
+    color: #e67e22; /* Naranja */
     font-size: 0.9em;
 }
 
@@ -290,11 +350,69 @@ footer {
 
 .price {
     font-weight: bold;
-    color: #d35400; 
+    color: #d35400; /* Naranja más oscuro */
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .printer-card-detail {
+        flex-direction: column; /* Apila imagen y texto en pantallas pequeñas */
+        text-align: center;
+    }
+    .printer-image {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .printer-info h3 {
+        text-align: center;
+    }
+    .features {
+        text-align: left;
+    }
+    .features li {
+        margin: 0 auto;
+        max-width: 300px;
+    }
 }
 
 /* ============FORMULARIO================ */
 /* ESTILOS GENERALES Y LAYOUT BASE  */
+/* (Asegúrate de que coincidan con tu index.html) */
+/* ==================================== */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Fondo suave para toda la página */
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+header {
+    background-color: #2c3e50; /* Azul corporativo */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header p {
+    margin: 0px 0 0;
+    font-size: 2.1em;
+}
+
 main {
     padding: 0px 0;
 }
@@ -310,12 +428,12 @@ main h2 {
 /* ==================================== */
 
 .contact-form {
-    background-color: #ffffff; 
+    background-color: #ffffff; /* Fondo blanco para el formulario */
     padding: 30px;
-    border-radius: 8px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    max-width: 600px; 
-    margin: 20px auto; 
+    border-radius: 8px; /* Bordes suaves */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    max-width: 600px; /* Limita el ancho del formulario */
+    margin: 20px auto; /* Centra el formulario */
 }
 
 .contact-form p {
@@ -329,10 +447,10 @@ main h2 {
 }
 
 .form-group label {
-    display: block; 
+    display: block; /* La etiqueta ocupa su propia línea */
     margin-bottom: 8px;
     font-weight: bold;
-    color: #004d99; 
+    color: #004d99; /* Color del texto de la etiqueta */
 }
 
 .form-group input[type="text"],
@@ -340,11 +458,11 @@ main h2 {
 .form-group input[type="tel"],
 .form-group select,
 .form-group textarea {
-    width: 100%; 
+    width: 100%; /* Ocupa todo el ancho del contenedor */
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; 
+    box-sizing: border-box; /* Asegura que padding no afecte el ancho total */
     font-size: 1em;
     transition: border-color 0.3s;
 }
@@ -352,12 +470,12 @@ main h2 {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: #ff6600; 
-    outline: none; 
+    border-color: #ff6600; /* Borde naranja al enfocar */
+    outline: none; /* Elimina el borde de enfoque por defecto del navegador */
 }
 
 .form-group textarea {
-    resize: vertical; 
+    resize: vertical; /* Permite redimensionar solo verticalmente */
 }
 
 /* Estilo para el botón de envío */
@@ -365,7 +483,7 @@ main h2 {
     display: block;
     width: 100%;
     padding: 15px;
-    background-color: #ff6600; 
+    background-color: #ff6600; /* Naranja llamativo (Color de acción) */
     color: white;
     border: none;
     border-radius: 4px;
@@ -377,7 +495,7 @@ main h2 {
 }
 
 .submit-button:hover {
-    background-color: #e65c00; 
+    background-color: #e65c00; /* Naranja más oscuro al pasar el ratón */
 }
 
 /* ==================================== */
@@ -395,35 +513,90 @@ footer {
 footer p {
     margin: 5px 0;
 }
+/* ==================================== */
+/* ESTILOS DEL LOGO EN LA CABECERA */
+/* ==================================== */
+
+/* 1. Ajustar el contenedor para que el logo se posicione correctamente */
+header .container {
+    position: relative; /* Permite posicionar el logo de forma absoluta dentro */
+    /* IMPORTANTE: Si ya tenías esta propiedad, ignórala */
+}
+
+/* 2. Estilos del enlace del logo */
+.logo-link {
+    /* Posiciona el logo en la esquina superior izquierda */
+    position: absolute;
+    top: 50%; /* Centra verticalmente el logo */
+    left: 0;
+    transform: translateY(-50%); /* Ajuste fino de centrado vertical */
+    z-index: 10;
+    display: block;
+    padding-left: 15px; /* Pequeño espacio del borde */
+}
+
+/* 3. Estilos de la imagen del logo */
+.logo-img {
+    width: 150px; /* Tamaño pequeño deseado */
+    height: auto;
+}
+
+/* 4. Ajuste del título H1 para que no quede detrás del logo */
+header h1 {
+    /* Agrega un margen/padding para compensar el espacio del logo */
+    /* (150px del logo + 20px de espacio extra) */
+    padding-left: 1px; 
+}
 
 /* ==================================== */
-/* ESTILOS DEL BOTÓN FLOTANTE DE WHATSAPP */
+/* ESTILOS DEL BOTÓN FLOTANTE DE WHATSAPP (SOLUCIÓN DEFINITIVA) */
 /* ==================================== */
 
 .whatsapp-button {
+    /* Posicionamiento Fijo en la pantalla */
     position: fixed;
     bottom: 20px; 
     right: 20px; 
     z-index: 1000;
-    background-color: #f2f5f3; 
-    border-radius: 50%; 
-    padding: 1px; 
+    
+    /* Estilo del contenedor */
+    background-color: #f2f5f3; /* Color  */
+    border-radius: 50%; /* Lo hace redondo */
+    padding: 1px; /* Le da espacio alrededor del ícono */
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25);
     transition: transform 0.9s;
+    
+    /* Elimina el subrayado del enlace */
     text-decoration: none; 
+    
+    /* Asegura que la imagen sea el único contenido visible */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .whatsapp-button:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1); /* Efecto de acercamiento al pasar el ratón */
 }
 
 .whatsapp-button img {
-    width: 100px; 
+    /* Estilo de la imagen dentro del botón */
+    width: 100px; /* Tamaño del icono */
     height: 100px;
     display: block;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 600px) {
+    .whatsapp-button {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px;
+    }
+    .whatsapp-button img {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 /* ==================================== */
@@ -440,4 +613,113 @@ footer p {
 
 .software-plans-grid {
     display: grid;
-    grid-template-columns: repeat
+    /* Mostrar 3 columnas en escritorio */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.plan-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+}
+
+.plan-card:hover {
+    transform: translateY(-8px);
+    border-color: #e67e22; /* Borde naranja al pasar el ratón */
+}
+
+.plan-card img {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.plan-card h3 {
+    color: #2c3e50;
+    font-size: 1.7em;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #777;
+    margin-bottom: 20px;
+    min-height: 40px; /* Para mantener la altura de las tarjetas */
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.plan-features li {
+    padding: 5px 0 5px 25px;
+    position: relative;
+    color: #333;
+}
+
+.plan-features li::before {
+    content: "✔️"; 
+    position: absolute;
+    left: 0;
+    color: #2ecc71; /* Color verde para checks */
+    font-weight: bold;
+}
+
+.plan-features li:nth-child(3)::before,
+.plan-features li:nth-child(4)::before {
+    /* Estilo para items que NO están incluidos */
+    content: "❌";
+    color: #e74c3c; /* Color rojo para X */
+}
+
+.price-info {
+    font-size: 1.1em;
+    color: #555;
+    margin-top: 20px;
+}
+
+.price-tag {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #d35400; /* Naranja fuerte */
+    margin: 5px 0 20px;
+}
+
+/* Estilos para el plan destacado (Más Vendido) */
+.featured-plan {
+    border: 3px solid #e67e22;
+    box-shadow: 0 6px 15px rgba(230, 126, 34, 0.3);
+}
+
+.badge-cta {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #2ecc71; /* Verde de éxito */
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Ajuste de responsividad */
+@media (max-width: 768px) {
+    .software-plans-grid {
+        grid-template-columns: 1fr; /* Una columna en móvil */
+    }
+    .plan-card {
+        padding: 30px 20px;
+    }
+}
