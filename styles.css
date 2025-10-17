@@ -21,66 +21,6 @@ header {
     text-align: center;
     padding: 20px 0;
 }
-/* ==================================== */
-/* RESPONSIVIDAD DEL ENCABEZADO (HEADER) */
-/* ==================================== */
-
-@media (max-width: 600px) {
-    /* 1. Reducir el tamaño de fuente del encabezado en móviles */
-    header {
-        padding: 15px 0; /* Reduce el padding vertical */
-    }
-
-    header h1 {
-        font-size: 2em; /* Título principal más pequeño */
-        padding-left: 0; /* Asegura que el título no tenga el margen extra del logo */
-    }
-
-    header p {
-        font-size: 1.3em; /* Subtítulo más pequeño */
-    }
-    
-    /* 2. Ajustar el contenedor para hacer espacio para el logo en la izquierda */
-    header .container {
-        padding: 0 15px; /* Pequeño padding lateral */
-        display: flex;
-        flex-direction: column; /* Apila el logo y el texto */
-        align-items: center; /* Centra el contenido */
-    }
-
-    /* 3. Reajustar el logo */
-    .logo-link {
-        position: static; /* Quita el posicionamiento absoluto */
-        transform: none; /* Elimina la transformación de centrado */
-        margin-bottom: 10px; /* Espacio debajo del logo */
-        padding-left: 0;
-    }
-    
-    .logo-img {
-        width: 100px; /* Reduce el tamaño del logo */
-        height: auto;
-    }
-}
-
-/* ==================================== */
-/* RESPONSIVIDAD DE LA NAVEGACIÓN (NAV) */
-/* ==================================== */
-/* Aunque la navegación ya es responsiva, este ajuste asegura el espaciado */
-@media (max-width: 600px) {
-    nav ul {
-        flex-wrap: wrap; /* Permite que los elementos pasen a una nueva línea si no caben */
-    }
-    
-    nav ul li {
-        margin: 5px 8px; /* Reduce el margen entre elementos */
-    }
-
-    nav ul li a {
-        padding: 10px 15px; /* Reduce el padding de los enlaces */
-        font-size: 1em; /* Ajusta el tamaño de la fuente */
-    }
-}
-
 
 header h1 {
     margin: 0;
@@ -218,6 +158,96 @@ nav ul li a:hover {
 }
 
 
+/* ==================================== */
+/* ESTILOS DEL CARRUSEL (SLIDER) - 5 IMÁGENES VISIBLES (11 ÍTEMS) */
+/* ==================================== */
+
+.carousel-container {
+    width: 900%;
+    max-width: 1200px; /* Usamos el máximo del contenedor para que quepan 5 imágenes */
+    overflow: hidden; 
+    margin: 0 auto 20px auto; 
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-slide {
+    display: flex;
+    /* Hay 11 ítems, queremos ver 5 a la vez. 11 / 5 * 100% = 220% */
+    width: 220%; 
+    
+    /* Duración de 30s para un ciclo completo (8 movimientos) */
+    animation: slide-animation 20s infinite; 
+}
+
+.carousel-item {
+    /* Cada ítem es 1/11 del ancho total. Esto equivale a 1/5 del ancho visible. */
+    width: calc(100% / 11); 
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1px; /* Pequeño padding para separar las imágenes */
+}
+
+.carousel-item img {
+    width: 100%; 
+    display: block;
+    height: auto;
+    object-fit: contain; 
+    max-height: 250px; /* Reducimos la altura para que las 5 imágenes encajen bien */
+}
+
+
+/* La animación se ajusta para mover el carrusel en pasos de 1/11 (9.0909%) */
+@keyframes slide-animation {
+    /* El movimiento es de 1/11 (9.0909%) del ancho total del slide. Hay 8 movimientos únicos. */
+    
+    /* 1. Muestra: 1, 2, 3, 4, 5 */
+    0%, 10% {
+        transform: translateX(0); 
+    }
+    
+    /* 2. Muestra: 2, 3, 4, 5, 6 */
+    12%, 22% {
+        transform: translateX(calc(-100% / 11 * 1)); /* Mueve 1/11 */
+    }
+    
+    /* 3. Muestra: 3, 4, 5, 6, 7 */
+    24%, 34% {
+        transform: translateX(calc(-100% / 11 * 2)); /* Mueve 2/11 */
+    }
+    
+    /* 4. Muestra: 4, 5, 6, 7, 8 */
+    36%, 46% {
+        transform: translateX(calc(-100% / 11 * 3)); /* Mueve 3/11 */
+    }
+
+    /* 5. Muestra: 5, 6, 7, 8, (Copia 1) */
+    48%, 58% {
+        transform: translateX(calc(-100% / 11 * 4)); /* Mueve 4/11 */
+    }
+
+    /* 6. Muestra: 6, 7, 8, (Copia 1), (Copia 2) */
+    60%, 70% {
+        transform: translateX(calc(-100% / 11 * 5)); /* Mueve 5/11 */
+    }
+
+    /* 7. Muestra: 7, 8, (Copia 1), (Copia 2), (Copia 3) */
+    72%, 82% {
+        transform: translateX(calc(-100% / 11 * 6)); /* Mueve 6/11 */
+    }
+    
+    /* 8. Muestra: 8, (Copia 1), (Copia 2), (Copia 3) - Este es el final del contenido único */
+    84%, 94% {
+        transform: translateX(calc(-100% / 11 * 7)); /* Mueve 7/11 */
+    }
+    
+    /* Salto al final para reiniciar (imperceptible) */
+    100% {
+        transform: translateX(calc(-100% / 11 * 7)); 
+    }
+}
 /* =============LOGO=IZQUIERDO=ANCA================= */
 /* ESTILOS DEL LOGO EN LA CABECERA */
 /* ==================================== */
@@ -611,7 +641,7 @@ header h1 {
 }
 
 .plan-card img {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -640,21 +670,8 @@ header h1 {
     padding: 5px 0 5px 25px;
     position: relative;
     color: #333;
-}
+   font-weight: bold;
 
-.plan-features li::before {
-    content: "✔️"; 
-    position: absolute;
-    left: 0;
-    color: #2ecc71; /* Color verde para checks */
-    font-weight: bold;
-}
-
-.plan-features li:nth-child(3)::before,
-.plan-features li:nth-child(4)::before {
-    /* Estilo para items que NO están incluidos */
-    content: "❌";
-    color: #e74c3c; /* Color rojo para X */
 }
 
 .price-info {
@@ -698,235 +715,3 @@ header h1 {
         padding: 30px 20px;
     }
 }
-
-/* ==================================== */
-/* ESTILOS DEL CARRUSEL (SLIDER) - 5 IMÁGENES VISIBLES (11 ÍTEMS) */
-/* ==================================== */
-
-.carousel-container {
-    width: 900%;
-    max-width: 1200px; /* Usamos el máximo del contenedor para que quepan 5 imágenes */
-    overflow: hidden; 
-    margin: 0 auto 20px auto; 
-    border-radius: 8px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.carousel-slide {
-    display: flex;
-    /* Hay 11 ítems, queremos ver 5 a la vez. 11 / 5 * 100% = 220% */
-    width: 220%; 
-    
-    /* Duración de 30s para un ciclo completo (8 movimientos) */
-    animation: slide-animation 20s infinite; 
-}
-
-.carousel-item {
-    /* Cada ítem es 1/11 del ancho total. Esto equivale a 1/5 del ancho visible. */
-    width: calc(100% / 11); 
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 1px; /* Pequeño padding para separar las imágenes */
-}
-
-.carousel-item img {
-    width: 100%; 
-    display: block;
-    height: auto;
-    object-fit: contain; 
-    max-height: 250px; /* Reducimos la altura para que las 5 imágenes encajen bien */
-}
-
-
-/* La animación se ajusta para mover el carrusel en pasos de 1/11 (9.0909%) */
-@keyframes slide-animation-desktop {
-    /* El movimiento es de 1/11 (9.0909%) del ancho total del slide. Hay 8 movimientos únicos. */
-    
-    /* 1. Muestra: 1, 2, 3, 4, 5 */
-    0%, 10% {
-        transform: translateX(0); 
-    }
-    
-    /* 2. Muestra: 2, 3, 4, 5, 6 */
-    12%, 22% {
-        transform: translateX(calc(-100% / 11 * 1)); /* Mueve 1/11 */
-    }
-    
-    /* 3. Muestra: 3, 4, 5, 6, 7 */
-    24%, 34% {
-        transform: translateX(calc(-100% / 11 * 2)); /* Mueve 2/11 */
-    }
-    
-    /* 4. Muestra: 4, 5, 6, 7, 8 */
-    36%, 46% {
-        transform: translateX(calc(-100% / 11 * 3)); /* Mueve 3/11 */
-    }
-
-    /* 5. Muestra: 5, 6, 7, 8, (Copia 1) */
-    48%, 58% {
-        transform: translateX(calc(-100% / 11 * 4)); /* Mueve 4/11 */
-    }
-
-    /* 6. Muestra: 6, 7, 8, (Copia 1), (Copia 2) */
-    60%, 70% {
-        transform: translateX(calc(-100% / 11 * 5)); /* Mueve 5/11 */
-    }
-
-    /* 7. Muestra: 7, 8, (Copia 1), (Copia 2), (Copia 3) */
-    72%, 82% {
-        transform: translateX(calc(-100% / 11 * 6)); /* Mueve 6/11 */
-    }
-    
-    /* 8. Muestra: 8, (Copia 1), (Copia 2), (Copia 3) - Este es el final del contenido único */
-    84%, 94% {
-        transform: translateX(calc(-100% / 11 * 7)); /* Mueve 7/11 */
-    }
-    
-    /* Salto al final para reiniciar (imperceptible) */
-    100% {
-        transform: translateX(calc(-100% / 11 * 7)); 
-    }
-}
-/* ==================================== */
-/* CORRECCIÓN FINAL: CARRUSEL RESPONSIVO (2 ÍTEMS VISIBLES) */
-/* ==================================== */
-
-@media (max-width: 768px) {
-    
-    .carousel-container {
-        width: 100%; /* Ocupa todo el ancho */
-        max-width: none;
-        margin: 0 auto 20px auto;
-    }
-
-    /* 1. Aplicamos la animación móvil aquí */
-    .carousel-slide {
-        display: flex;
-        width: 550%; /* 11 ítems / 2 visibles = 550% */
-        animation: slide-animation-mobile 20s infinite linear; /* AÑADIDO: 'linear' para suavidad */
-    }
-
-    .carousel-item {
-        width: calc(100% / 11); 
-        flex-shrink: 0; 
-        padding: 0 5px; 
-    }
-    
-    .carousel-item img {
-        max-height: 150px; 
-    }
-
-    /* 2. Definición del Keyframes específico para móvil */
-    @keyframes slide-animation-mobile {
-        /* Hay 8 movimientos únicos. Cada movimiento es de 1/11 del ancho total del slide. */
-        
-        /* 1. Muestra: 1, 2 */
-        0%, 10% {
-            transform: translateX(0); 
-        }
-        
-        /* 2. Muestra: 2, 3 */
-        12.5%, 22.5% {
-            transform: translateX(calc(-100% / 11 * 1)); 
-        }
-        
-        /* 3. Muestra: 3, 4 */
-        25%, 35% {
-            transform: translateX(calc(-100% / 11 * 2)); 
-        }
-        
-        /* 4. Muestra: 4, 5 */
-        37.5%, 47.5% {
-            transform: translateX(calc(-100% / 11 * 3)); 
-        }
-
-        /* 5. Muestra: 5, 6 */
-        50%, 60% {
-            transform: translateX(calc(-100% / 11 * 4)); 
-        }
-
-        /* 6. Muestra: 6, 7 */
-        62.5%, 72.5% {
-            transform: translateX(calc(-100% / 11 * 5)); 
-        }
-
-        /* 7. Muestra: 7, 8 */
-        75%, 85% {
-            transform: translateX(calc(-100% / 11 * 6)); 
-        }
-        
-        /* 8. Muestra: 8, (Copia 1) - Final del contenido único */
-        87.5%, 97.5% {
-            transform: translateX(calc(-100% / 11 * 7)); 
-        }
-        
-        /* Salto para reiniciar */
-        100% {
-            transform: translateX(calc(-100% / 11 * 7)); 
-        }
-    }
-}
-
-/* ==================================== */
-/* RESPONSIVIDAD DEL ENCABEZADO (HEADER) */
-/* ==================================== */
-
-@media (max-width: 600px) {
-    /* 1. Reducir el tamaño de fuente del encabezado en móviles */
-    header {
-        padding: 15px 0; /* Reduce el padding vertical */
-    }
-
-    header h1 {
-        font-size: 2em; /* Título principal más pequeño */
-        padding-left: 0; /* Asegura que el título no tenga el margen extra del logo */
-    }
-
-    header p {
-        font-size: 1.3em; /* Subtítulo más pequeño */
-    }
-    
-    /* 2. Ajustar el contenedor para hacer espacio para el logo en la izquierda */
-    header .container {
-        padding: 0 15px; /* Pequeño padding lateral */
-        display: flex;
-        flex-direction: column; /* Apila el logo y el texto */
-        align-items: center; /* Centra el contenido */
-    }
-
-    /* 3. Reajustar el logo */
-    .logo-link {
-        position: static; /* Quita el posicionamiento absoluto */
-        transform: none; /* Elimina la transformación de centrado */
-        margin-bottom: 10px; /* Espacio debajo del logo */
-        padding-left: 0;
-    }
-    
-    .logo-img {
-        width: 100px; /* Reduce el tamaño del logo */
-        height: auto;
-    }
-}
-
-/* ==================================== */
-/* RESPONSIVIDAD DE LA NAVEGACIÓN (NAV) */
-/* ==================================== */
-/* Aunque la navegación ya es responsiva, este ajuste asegura el espaciado */
-@media (max-width: 600px) {
-    nav ul {
-        flex-wrap: wrap; /* Permite que los elementos pasen a una nueva línea si no caben */
-    }
-    
-    nav ul li {
-        margin: 5px 8px; /* Reduce el margen entre elementos */
-    }
-
-    nav ul li a {
-        padding: 10px 15px; /* Reduce el padding de los enlaces */
-        font-size: 1em; /* Ajusta el tamaño de la fuente */
-    }
-}
-
-
