@@ -31,34 +31,37 @@
     </nav>
 
     <main>
-        <main>
         <div class="container">
             <h2>Formulario de Contacto y Cotización</h2>
 
-            <form action="/enviar-cotizacion" method="POST" class="contact-form">
+            <form action="https://formsubmit.co/INVERSIONANCA@GMAIL.com" method="POST" class="contact-form">
                 
                 <p>Por favor, especifica el producto o servicio en el que estás interesado.</p>
 
                 <div class="form-group">
                     <label for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" name="nombre_completo" required>
-                </div>
+                    <input type="text" id="nombre" name="Nombre Completo" required>
+                    </div>
 
                 <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email_contacto" required>
+                    <input type="email" id="email" name="Correo Electrónico" required>
                 </div>
 
                 <div class="form-group">
                     <label for="telefono">Teléfono (WhatsApp):</label>
-                    <input type="tel" id="telefono" name="telefono_contacto" placeholder="Ej: 0414-XXXXXXX" required>
+                    <input type="tel" id="telefono" name="Teléfono" placeholder="Ej: 0414-XXXXXXX" required>
                 </div>
 
                 <div class="form-group">
                     <label for="producto">Producto/Servicio de Interés:</label>
-                    <select id="producto" name="producto_interes" required>
+                    <select id="producto" name="Producto de Interés" required>
                         <option value="" disabled selected>Selecciona una opción</option>
                         <option value="HKA80W">Impresora Fiscal HKA80W</option>
+                        <option value="TerminalHKA20">Terminal Fiscal Portátil HKA20</option>
+                        <option value="AclasPP9Plus">Impresora Fiscal Aclas PP9 Plus</option>
+                        <option value="AclasCR2050">Calculadora Fiscal Aclas CR2050</option>
+                        <option value="Dascom1140">Impresora Fiscal Dascom Tally 1140</option>
                         <option value="SistemaFacturacion">Sistema de Facturación (Software)</option>
                         <option value="ComboEmprendedor">Combo Emprendedor Fiscal</option>
                         <option value="SoporteTecnico">Soporte Técnico/Mantenimiento</option>
@@ -68,21 +71,17 @@
 
                 <div class="form-group">
                     <label for="mensaje">Detalles Adicionales:</label>
-                    <textarea id="mensaje" name="mensaje_adicional" rows="5" placeholder="Escribe cualquier pregunta o detalle adicional sobre tu negocio."></textarea>
+                    <textarea id="mensaje" name="Mensaje/Detalles" rows="5" placeholder="Escribe cualquier pregunta o detalle adicional sobre tu negocio."></textarea>
                 </div>
 
+                <input type="hidden" name="_subject" value="Nueva Solicitud de Cotización - INVERSIONES ANCA, C.A">
+                
                 <button type="submit" class="submit-button">Enviar Solicitud de Cotización</button>
 
             </form>
-        </div>
+            </div>
     </main>
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impresoras Fiscales - INVERSIONES ANCA, C.A</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-
+    
     <footer>
         <div class="container">
             <p>&copy; 2025 INVERSIONES ANCA, C.A. Todos los derechos reservados.</p>
