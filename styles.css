@@ -41,7 +41,7 @@ nav {
     top: 0; 
     z-index: 999; 
     /* AJUSTE: Reducir padding vertical de la barra */
-    padding: 1.5px 0; 
+    padding: 0.1px 0; 
 }
 
 nav ul {
@@ -58,23 +58,42 @@ nav ul {
 nav ul li {
     display: inline-block;
     /* AJUSTE: Reducir margen entre elementos */
-    margin: 3px 6px; 
+    margin: 0.5px 2px; 
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 1em; 
+    font-size: 0.95em; 
     /* AJUSTE: Reducir padding vertical y horizontal del botón */
     display: block;
-    padding: 6px 10px; 
+    padding: 2px 4px; 
     transition: background-color 0.3s;
 }
 
 nav ul li a:hover {
     background-color: #555;
 }
+/* ... [Otros ajustes de @media] ... */
+    
+    /* 1. NAVEGACIÓN (Compacta para móvil) */
+    nav ul {
+        flex-wrap: wrap; 
+        justify-content: space-around; 
+    }
+    
+    nav ul li {
+        /* AJUSTE: Margen mínimo */
+        margin: 1px; 
+    }
+    
+    nav ul li a {
+        /* AJUSTE: Padding que permite al tacto seleccionar el botón, pero pequeño */
+        padding: 5px 6px; 
+        font-size: 0.85em; /* Fuente ligeramente más pequeña */
+    }
 
+/* ... [Resto de las media queries] ... */
 /* ESTILOS PARA LA NAVEGACIÓN (nav) - Sección repetida, se optimiza aquí */
 nav {
     background-color: #333; /* Fondo oscuro para el menú */
@@ -874,6 +893,9 @@ header h1 {
         96%, 100% { transform: translateX(calc(-100% / 11 * 7)); }
     }
 }
+
+
+
 
 
 
