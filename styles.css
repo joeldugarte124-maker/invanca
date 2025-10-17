@@ -37,12 +37,11 @@ header p {
 /* Navegación */
 nav {
     background-color: #34495e;
-    /* CAMBIO 1: Hacer la barra fija */
     position: sticky; 
     top: 0; 
-    z-index: 999; /* Asegura que esté por encima de otros elementos */
-    /* CAMBIO 2: Reducir el padding */
-    padding: 5px 0; 
+    z-index: 999; 
+    /* AJUSTE: Reducir padding vertical de la barra */
+    padding: 3px 0; 
 }
 
 nav ul {
@@ -50,18 +49,30 @@ nav ul {
     padding: 0;
     margin: 0;
     text-align: center;
+    /* Para el caso de que los botones se envuelvan en escritorio, aunque es raro */
+    display: flex; 
+    justify-content: center;
+    flex-wrap: wrap; /* Permitir que salte a dos líneas si es necesario */
 }
 
 nav ul li {
     display: inline-block;
-    margin: 0 10px; /* Reducir margen entre elementos */
+    /* AJUSTE: Reducir margen entre elementos */
+    margin: 3px 6px; 
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    /* CAMBIO 3: Reducir el tamaño de la fuente */
     font-size: 1em; 
+    /* AJUSTE: Reducir padding vertical y horizontal del botón */
+    display: block;
+    padding: 6px 10px; 
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #555;
 }
 
 /* ESTILOS PARA LA NAVEGACIÓN (nav) - Sección repetida, se optimiza aquí */
@@ -863,5 +874,6 @@ header h1 {
         96%, 100% { transform: translateX(calc(-100% / 11 * 7)); }
     }
 }
+
 
 
