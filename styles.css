@@ -163,7 +163,7 @@ nav ul li a:hover {
 /* ==================================== */
 
 .carousel-container {
-    width: 900%;
+    width: 90%;
     max-width: 1200px; /* Usamos el máximo del contenedor para que quepan 5 imágenes */
     overflow: hidden; 
     margin: 0 auto 20px auto; 
@@ -715,3 +715,95 @@ header h1 {
         padding: 30px 20px;
     }
 }
+/* ====================================================================== */
+/* MEDIA QUERIES GLOBALES (PARA MÓVILES - MAX 600PX)             */
+/* ====================================================================== */
+@media (max-width: 600px) {
+    
+    /* 1. NAVEGACIÓN (Para que los botones no se salgan) */
+    nav ul {
+        flex-wrap: wrap; /* Permite que los elementos salten a la siguiente línea */
+    }
+    
+    nav ul li {
+        margin: 5px; /* Reduce el margen */
+    }
+    
+    nav ul li a {
+        padding: 10px 10px; /* Reduce el padding para ahorrar espacio */
+        font-size: 1em;
+    }
+    
+    /* 2. ENCABEZADO (Header) */
+    header .container {
+        /* Deshacer la posición absoluta del logo para evitar solapamientos */
+        position: static; 
+        padding: 10px;
+        display: flex; 
+        flex-direction: column; /* Apila los elementos verticalmente */
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo-link {
+        /* Restablecer la posición del logo */
+        position: static; 
+        transform: none;
+        padding-left: 0;
+        margin-bottom: 10px; /* Espacio debajo del logo */
+    }
+
+    .logo-img {
+        width: 120px; /* Reducir el tamaño del logo */
+    }
+
+    header h1 {
+        font-size: 1.8em; /* Reducir drásticamente el tamaño del título principal */
+        padding-left: 0;
+        word-break: break-word; /* Rompe palabras largas para evitar desbordamiento */
+    }
+
+    header p {
+        font-size: 1em; /* Reducir el subtítulo */
+    }
+    
+    /* 3. CARRUSEL (SLIDER) */
+    .carousel-container {
+        width: 95%; /* Usar casi todo el ancho de la pantalla */
+        max-width: 100%; 
+    }
+    
+    .carousel-slide {
+        /* Para mostrar 1 imagen a la vez: 11 ítems * 100% de ancho del contenedor */
+        width: 1100%; 
+        animation: mobile-slide-animation 20s infinite; /* Usar la nueva animación */
+    }
+
+    .carousel-item {
+        /* 1/11th de 1100% es el 100% del ancho visible del contenedor (1 imagen) */
+        width: calc(100% / 11); 
+        padding: 0;
+    }
+    
+    .carousel-item img {
+        max-height: 180px; /* Ajustar altura para móvil */
+    }
+    
+    /* RE-DEFINICIÓN DE LA ANIMACIÓN PARA MÓVILES */
+    @keyframes mobile-slide-animation {
+        /* La animación se mueve por 1/11 del ancho total del slide para mostrar 1 imagen completa */
+        
+        0%, 10% { transform: translateX(calc(-100% / 11 * 0)); }
+        12%, 22% { transform: translateX(calc(-100% / 11 * 1)); }
+        24%, 34% { transform: translateX(calc(-100% / 11 * 2)); }
+        36%, 46% { transform: translateX(calc(-100% / 11 * 3)); }
+        48%, 58% { transform: translateX(calc(-100% / 11 * 4)); }
+        60%, 70% { transform: translateX(calc(-100% / 11 * 5)); }
+        72%, 82% { transform: translateX(calc(-100% / 11 * 6)); }
+        84%, 94% { transform: translateX(calc(-100% / 11 * 7)); }
+        
+        /* Salto al final para reiniciar (imperceptible) */
+        96%, 100% { transform: translateX(calc(-100% / 11 * 7)); }
+    }
+}
+
