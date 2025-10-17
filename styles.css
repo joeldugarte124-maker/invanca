@@ -32,10 +32,17 @@ header p {
     font-size: 2.2em;
 }
 
+/* ... [Código anterior de styles.css] ... */
+
 /* Navegación */
 nav {
     background-color: #34495e;
-    padding: 10px 0;
+    /* CAMBIO 1: Hacer la barra fija */
+    position: sticky; 
+    top: 0; 
+    z-index: 999; /* Asegura que esté por encima de otros elementos */
+    /* CAMBIO 2: Reducir el padding */
+    padding: 5px 0; 
 }
 
 nav ul {
@@ -47,13 +54,63 @@ nav ul {
 
 nav ul li {
     display: inline-block;
-    margin: 0 15px;
+    margin: 0 10px; /* Reducir margen entre elementos */
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 1.1em;
+    /* CAMBIO 3: Reducir el tamaño de la fuente */
+    font-size: 1em; 
+}
+
+/* ESTILOS PARA LA NAVEGACIÓN (nav) - Sección repetida, se optimiza aquí */
+nav {
+    background-color: #333; /* Fondo oscuro para el menú */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Para poner los elementos en línea */
+    justify-content: center;
+}
+
+nav ul li a {
+    /* CAMBIO 4: Reducir el padding interno del botón */
+    display: block;
+    padding: 10px 15px; 
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+/* ... [Resto del código de styles.css] ... */
+
+/* APLICAR EL MISMO AJUSTE EN LA MEDIA QUERY PARA MÓVILES */
+@media (max-width: 600px) {
+    
+    /* 1. NAVEGACIÓN (Para que los botones no se salgan) */
+    nav ul {
+        flex-wrap: wrap; 
+        justify-content: space-around; /* Distribuir uniformemente */
+    }
+    
+    nav ul li {
+        margin: 3px; /* Margen muy reducido */
+    }
+    
+    nav ul li a {
+        padding: 8px 8px; /* Reducir aún más el padding */
+        font-size: 0.9em; /* Fuente ligeramente más pequeña */
+    }
+    /* ... [Resto de las media queries] ... */
+
 }
 
 /* Contenido Principal */
@@ -806,4 +863,5 @@ header h1 {
         96%, 100% { transform: translateX(calc(-100% / 11 * 7)); }
     }
 }
+
 
