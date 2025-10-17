@@ -41,7 +41,7 @@ nav {
     top: 0; 
     z-index: 999; 
     /* AJUSTE: Reducir padding vertical de la barra */
-    padding: 3px 0; 
+    padding: 1.5px 0; 
 }
 
 nav ul {
@@ -874,6 +874,7 @@ header h1 {
         96%, 100% { transform: translateX(calc(-100% / 11 * 7)); }
     }
 }
+
 
 
 
